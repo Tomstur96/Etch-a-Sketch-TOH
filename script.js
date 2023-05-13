@@ -1,7 +1,10 @@
 // Div Grid Creation and Hover Affect //
 
 const mainContainer = document.getElementById("mainContainer");
-let gridSize = document.querySelector("#gridSize__Button");
+let gridSize = document.querySelector("#gridSize__button");
+let divs = document.querySelector(".divGrid");
+let reset = document.querySelector("#reset__button");
+let randomgRGB = document.querySelector("#randomRgb");
 let defaultGridSize = 8;
 
 createGridDiv(defaultGridSize);
@@ -29,10 +32,10 @@ function createGridDiv(defaultGridSize) {
 
 // Hover Event Listener and append class //
 
-mainContainer.addEventListener('mouseover', function(e){
+mainContainer.addEventListener('mouseover', function Color(e){
     if (e.target.matches('.divGrid')) {
         e.target.classList.add('hover');
-    }
+    } 
 });
 
 // // Remove current container //
@@ -49,5 +52,30 @@ gridSize.addEventListener("click", function(){
     let inputNumber = prompt("What size Grid would you like? \nMaximum is 100",100);
     let val = inputNumber;
     removeAllChildNodes(mainContainer);
-    createGridDiv((val/2));
+    createGridDiv((val));
 });
+
+
+// Random RGB Color Generator //
+
+const randomRgbColor = () => {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+// Reset grid to initial state //
+
+function gridReset(parent) {
+    removeAllChildNodes(parent);
+    createGridDiv(defaultGridSize);
+};
+
+// Random RGB Click //
+
+function randomColor() {
+        removeEventListener("click", color(divs))
+        divs.style.backgroundColor = randomRgbColor();
+};
+

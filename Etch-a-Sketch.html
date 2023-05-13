@@ -11,7 +11,9 @@
     <section class="section__1 flex">
         <h1 class="h1__content">Etch a Sketch</h1>
         <div class="options">
-            <button id="gridSize__Button" class="gridSize">Change Grid Size</button>
+            <button id="gridSize__button" class="gridSize">Change Grid Size</button>
+            <button id="reset__button" class="reset" onclick="gridReset(mainContainer)">Reset</button>
+            <button id="randomRgb" class="randomRgb" onclick="randomRgbColor(divs);">random RGB</button>
         </div>
         <div class="container" id="mainContainer"></div>
     </section>

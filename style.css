@@ -32,7 +32,7 @@
 }
 .section__1 {
     width: 100%;
-    max-width: 1180px;
+    max-width: 1120px;
     margin: 0 auto;
 }
 
@@ -61,6 +61,7 @@
     background-color: limegreen;
 }
 
+
 /* Button Styling */
 
 .options {
@@ -81,3 +82,35 @@
     background-color: rgba(255, 105, 180, .5);
     cursor: pointer;
 }
+
+.reset {
+    font-family: var(--font-ff-std);
+    font-size: var(--fs-button);
+    padding: .75rem 2.25rem;
+    background-color: yellow;
+    border: none;
+    border-radius: 50px;
+}
+
+.reset:hover {
+    background-color: rgba(255, 255, 0, .5);
+    cursor: pointer;
+}
+
+.randomRgb{
+    font-family: var(--font-ff-std);
+    font-size: var(--fs-button);
+    padding: .75rem 2.25rem;
+    background-color: limegreen;
+    border: none;
+    border-radius: 50px;
+}
+
+.randomRgb:hover {
+    background-color: rgba(50, 205, 50, .5);
+    cursor: pointer;
+}
+.options button {
+    margin-right: 25px;
+}
+
