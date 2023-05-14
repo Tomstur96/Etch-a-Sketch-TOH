@@ -1,13 +1,15 @@
-// Div Grid Creation and Hover Affect //
-
 const mainContainer = document.getElementById("mainContainer");
 let gridSize = document.querySelector("#gridSize__button");
 let divs = document.querySelector(".divGrid");
+const divArray = document.getElementsByClassName("divGrid");
 let reset = document.querySelector("#reset__button");
-let randomgRGB = document.querySelector("#randomRgb");
+let randomgRGB = document.querySelector(".randomRgb");
 let defaultGridSize = 8;
 
 createGridDiv(defaultGridSize);
+colorHover();
+randomRGBStatus();
+gridReset(mainContainer);
 
 // Individual Grid Creation // 
 
@@ -32,11 +34,33 @@ function createGridDiv(defaultGridSize) {
 
 // Hover Event Listener and append class //
 
-mainContainer.addEventListener('mouseover', function Color(e){
-    if (e.target.matches('.divGrid')) {
-        e.target.classList.add('hover');
-    } 
-});
+function colorHover() {
+    for (const divGrid of divArray) {
+        divGrid.addEventListener('mouseover', function(e) {
+            const active = randomgRGB.getAttribute("data-active")
+            e.target.classList.add('active');
+            if (e.target.matches('.divGrid.active') && active === "true") {
+                    e.target.style.backgroundColor = randomRgbColor();
+                } else if ((e.target.matches('.divGrid.active') && active === "false")) {
+                    e.target.classList.add('hover');
+                }
+            }
+        )
+    }
+};
+
+// RGB Button Status //
+
+function randomRGBStatus() {
+    randomgRGB.addEventListener('click', function(e){
+        const active = randomgRGB.getAttribute("data-active")
+        if (active === "false") {
+            randomgRGB.setAttribute(`data-active`, true);
+        } else {
+            randomgRGB.setAttribute(`data-active`, false);
+        }
+    });
+};
 
 // // Remove current container //
 
@@ -53,6 +77,8 @@ gridSize.addEventListener("click", function(){
     let val = inputNumber;
     removeAllChildNodes(mainContainer);
     createGridDiv((val));
+    colorHover();
+    randomRGBStatus();
 });
 
 
@@ -62,20 +88,21 @@ const randomRgbColor = () => {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
+    return 'rgb(' + r + ',' + g + ',' + b + ')';    
 }
 
 // Reset grid to initial state //
 
 function gridReset(parent) {
-    removeAllChildNodes(parent);
-    createGridDiv(defaultGridSize);
+    reset.addEventListener('click', function(e){
+        removeAllChildNodes(parent);
+        createGridDiv(defaultGridSize);
+        colorHover();
+        const active = randomgRGB.getAttribute("data-active");
+            if (active === "true") {
+                randomgRGB.setAttribute(`data-active`, false);
+            } else {
+                randomgRGB.setAttribute(`data-active`, false);
+            };
+        })
 };
-
-// Random RGB Click //
-
-function randomColor() {
-        removeEventListener("click", color(divs))
-        divs.style.backgroundColor = randomRgbColor();
-};
-
